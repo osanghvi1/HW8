@@ -106,22 +106,59 @@ The k-mer estimate gives the **minimum** possible length. The actual assembly is
 - `HOMEWORK_ANSWERS.txt` - Answers to all homework questions
 - `README.md` - This file
 
-## How to Run
+## How to Use This Repository
 
-### Requirements
+### ✅ **All Analysis is Complete!**
+
+The homework is **fully completed** and all answers are ready. You don't need to run any code - just view the results!
+
+### 📄 **Where to Find the Answers**
+
+**Main answer file:** `HOMEWORK_ANSWERS.txt` - Contains all 4 homework questions with complete answers
+
+**Supporting files:**
+- `contigs_initial.txt` - The 70 assembled contigs
+- `contig_graph.txt` - Graph structure showing connections
+- `assembled_paths.txt` - All 140 possible paths through the graph
+
+### 🖥️ **Setup on Another Computer**
+
+If you want to run the Python analysis yourself or modify anything:
+
+**Option 1: Use the existing virtual environment (if venv/ folder exists)**
 ```bash
-python3 -m venv venv
+# On Mac/Linux:
 source venv/bin/activate
+
+# On Windows:
+venv\Scripts\activate
+```
+
+**Option 2: Create a fresh virtual environment**
+```bash
+# Create new environment
+python3 -m venv venv
+
+# Activate it (Mac/Linux):
+source venv/bin/activate
+
+# Or on Windows:
+venv\Scripts\activate
+
+# Install required packages
 pip install pandas openpyxl
 ```
 
-### Execution
+### 🔄 **If You Want to Re-run the Analysis**
+
 The analysis was performed using Python scripts that:
-1. Parse the Excel file
-2. Build the De Bruijn graph
-3. Find unbranched contigs
+1. Parse the Excel file (`hw8kmer.xlsx`)
+2. Build the De Bruijn graph from 425 unique 6-mers
+3. Find 70 unbranched contigs
 4. Merge contigs into longer paths
-5. Calculate statistics
+5. Calculate statistics (N50, assembly length, etc.)
+
+All output files are already generated and included in this repository.
 
 ## Key Concepts
 
