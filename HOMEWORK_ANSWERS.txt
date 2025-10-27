@@ -1,0 +1,110 @@
+================================================================================
+HOMEWORK 8 - RECONSTRUCTING A MUSICAL GENOME
+ANSWERS TO QUESTIONS
+================================================================================
+
+QUESTION 1: What is the song?
+================================================================================
+The song is: "Only Human" by Calum Scott
+
+Lyrics identified from the assembly:
+- "all you're only human, human after all"
+- "don't put your blame on me"
+- "take a look in the mirror and what do you see"
+- "it clear or are you deceived in what you believe"
+- "cause I'm only human"
+- "can see through this and see what's behind"
+- "got no way to prove it, so maybe I'm blind"
+- "thinking I can solve them, Lord, heaven's above"
+- "I'm only, I'm only human"
+
+
+QUESTION 2: What are the number of contigs, length of assembly, and N50?
+================================================================================
+Number of contigs: 70
+Length of assembly: 775 letters
+N50: 11 letters
+
+Details:
+- Longest contig: 45 letters
+- Shortest contig: 6 letters
+- Contig length distribution:
+  > 40 letters: 2 contigs
+  30-40 letters: 2 contigs
+  20-30 letters: 4 contigs
+  10-20 letters: 15 contigs
+  < 10 letters: 47 contigs
+
+
+QUESTION 3: How does your assembly length compare to the length you would
+predict from the kmers?
+================================================================================
+Predicted length from k-mers: 430 letters
+  Formula: unique k-mers + (k-1) = 425 + 5 = 430
+
+Actual assembly length: 775 letters
+
+Difference: +345 letters (80.2% longer than predicted)
+
+The actual assembly is significantly LONGER than the predicted length.
+
+
+QUESTION 4: Why are the kmer estimates of the length and the sum of the
+lengths of your contigs different?
+================================================================================
+The assembly length (775 letters) is much longer than the predicted length
+(430 letters) because of REPEATED SEQUENCES and BRANCHING in the De Bruijn
+graph.
+
+Reasons for the difference:
+
+1. REPEATED PHRASES: Song lyrics contain repeated words and phrases like:
+   - "only human" appears multiple times
+   - "I'm only" is repeated
+   - "after all" occurs several times
+   - Common words like "you", "me", "the" repeat throughout
+
+2. CYCLES IN THE GRAPH: When the same phrase appears multiple times in the
+   original text, it creates cycles in the De Bruijn graph. Each time we
+   traverse the cycle, we count those letters again in our contigs.
+
+3. BRANCHING PATHS: At branch points, the graph splits into multiple paths.
+   Each path is counted separately, leading to the same k-mers being used
+   in multiple contigs.
+
+4. OVERLAPS: When calculating total contig length, we sum all contig lengths
+   without accounting for the fact that many contigs share overlapping
+   regions (the 5-letter nodes that connect them).
+
+5. K-MER FORMULA LIMITATION: The formula "unique k-mers + (k-1)" assumes a
+   LINEAR sequence with no repeats. It only works for:
+   - Simple, non-repetitive sequences
+   - Graphs with a single Eulerian path
+   - No branching or cycles
+
+In summary: The k-mer estimate gives the MINIMUM possible genome length
+assuming no repeats. The actual assembly is longer because song lyrics are
+HIGHLY REPETITIVE, creating a complex graph with many cycles and branches.
+
+
+================================================================================
+ADDITIONAL INFORMATION
+================================================================================
+
+K-mer Statistics:
+- Total unique 6-mers: 425
+- Total k-mer observations: 2,400
+- Average k-mer coverage: 5.65x
+
+Graph Structure:
+- Number of nodes (5-mers): 406
+- Number of initial contigs: 70
+- Number of possible paths through graph: 140
+- Longest assembled path: 135 letters
+
+Files Generated:
+- kmers_data.txt: All k-mers and their counts
+- graph_edges.txt: Edge information for the De Bruijn graph
+- contigs_initial.txt: 70 initial contigs (unbranched paths)
+- contig_graph.txt: Connections between contigs
+- assembled_paths.txt: All 140 possible paths through the graph
