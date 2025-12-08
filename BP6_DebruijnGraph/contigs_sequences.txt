@@ -1,0 +1,54 @@
+ASSEMBLED CONTIGS
+============================================================
+
+Contig 1 (length 49):
+snotwitherdeeprootsarenotreachedbythefrostfromthe
+
+Contig 2 (length 48):
+snotglitternotallthosewhowanderarelosttheoldthat
+
+Contig 3 (length 21):
+hallspringrenewedshal
+
+Contig 4 (length 21):
+okenthecrownlessagain
+
+Contig 5 (length 17):
+atisstrongdoesnot
+
+Contig 6 (length 17):
+mtheashesafiresha
+
+Contig 7 (length 13):
+llbebladethat
+
+Contig 8 (length 13):
+okenalightfro
+
+Contig 9 (length 13):
+thatwasbroken
+
+Contig 10 (length 12):
+atisgolddoes
+
+Contig 11 (length 12):
+eshadowsshal
+
+Contig 12 (length 9):
+llbewoken
+
+Contig 13 (length 7):
+mthesha
+
+Contig 14 (length 6):
+eshall
+
+Contig 15 (length 6):
+hallbe
+
+Contig 16 (length 6):
+thatis
+
+Contig 17 (length 5):
+lthat
+

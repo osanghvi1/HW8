@@ -1,0 +1,244 @@
+================================================================================
+BP6: DE BRUIJN GRAPH ASSEMBLY - ANSWERS
+================================================================================
+
+Student: Omkar Sanghvi
+Assignment: BP6 - De Bruijn Graph Assembly (75 points)
+Date: December 8, 2024
+
+================================================================================
+PART 1: THE DE BRUIJN GRAPH (DBG)
+================================================================================
+
+The De Bruijn graph was constructed from 207 unique 5-mers with the following
+properties:
+
+Graph Construction:
+- K-mer size: 5 letters
+- Node size: 4 letters (k-1)
+- Total nodes: 200
+- Total edges: 207
+- Graph structure: Mostly linear with 14 branch/merge points
+
+Node Types:
+- Start tips (nodes with no incoming edges): 1
+- End tips (nodes with no outgoing edges): 1
+- Branch points (nodes with multiple outgoing edges): 8
+- Merge points (nodes with multiple incoming edges): 6
+- Linear nodes (single in, single out): 185
+
+The condensed De Bruijn graph (after merging unbranched regions) is submitted
+as "debruijn_graph_complete.xlsx" which shows:
+- All 200 nodes (4-mers)
+- Their incoming and outgoing connections (by node number)
+- The merged sequences (contigs) that each node belongs to
+
+The graph structure indicates a relatively straightforward assembly with a
+single start and end point, but with some internal branching due to repeated
+words in the quote.
+
+
+================================================================================
+PART 2: LIST OF ASSEMBLED CONTIGS
+================================================================================
+
+The assembly produced 17 contigs after condensing unbranched regions of the
+De Bruijn graph:
+
+Contig ID | Length | Sequence
+----------|--------|----------------------------------------------------------
+    1     |   49   | snotwitherdeeprootsarenotreachedbythefrostfromthe
+    2     |   48   | snotglitternotallthosewhowanderarelosttheoldthat
+    3     |   21   | hallspringrenewedshal
+    4     |   21   | okenthecrownlessagain
+    5     |   17   | atisstrongdoesnot
+    6     |   17   | mtheashesafiresha
+    7     |   13   | llbebladethat
+    8     |   13   | okenalightfro
+    9     |   13   | thatwasbroken
+   10     |   12   | atisgolddoes
+   11     |   12   | eshadowsshal
+   12     |    9   | llbewoken
+   13     |    7   | mthesha
+   14     |    6   | eshall
+   15     |    6   | hallbe
+   16     |    6   | thatis
+   17     |    5   | lthat
+
+Total assembly length: 275 letters
+
+The complete list of contigs is also available in:
+- contigs.xlsx (structured data with node connections)
+- contigs.txt (tab-delimited format)
+- contigs_sequences.txt (readable format)
+
+
+================================================================================
+PART 3: N50 OF THE ASSEMBLY
+================================================================================
+
+N50 = 21 letters
+
+Calculation Method:
+The N50 is defined as the contig length such that 50% of the total assembly
+is contained in contigs of that length or longer.
+
+Calculation Steps:
+1. Sort contigs by length (descending): 49, 48, 21, 21, 17, 17, 13, 13, 13...
+2. Total assembly length = 275 letters
+3. Cumulative sum until reaching 275 / 2 = 137.5 letters:
+   - 49 letters (cumsum = 49)
+   - 48 letters (cumsum = 97)
+   - 21 letters (cumsum = 118)
+   - 21 letters (cumsum = 139) ← crosses 50% threshold
+
+4. N50 = 21 letters
+
+Interpretation:
+- Half of the assembled sequence is in contigs of length 21 or greater
+- This indicates moderate assembly quality
+- The presence of two long contigs (49 and 48 letters) represents successful
+  assembly of the major portions of the quote
+- The remaining assembly is fragmented into smaller contigs due to branch
+  points in the graph
+
+
+================================================================================
+PART 4: THE FAMOUS QUOTE
+================================================================================
+
+The famous quote is:
+
+"All That Is Gold Does Not Glitter"
+(The Riddle of Strider)
+
+From: J.R.R. Tolkien's "The Lord of the Rings: The Fellowship of the Ring"
+      Book I, Chapter 10: "Strider"
+
+Full text (with punctuation and spacing restored):
+
+    All that is gold does not glitter,
+    Not all those who wander are lost;
+    The old that is strong does not wither,
+    Deep roots are not reached by the frost.
+
+    From the ashes a fire shall be woken,
+    A light from the shadows shall spring;
+    Renewed shall be blade that was broken,
+    The crownless again shall be king.
+
+Context:
+This poem describes Aragorn (Strider), who appears as a humble ranger but is
+actually the rightful heir to the throne of Gondor. The poem emphasizes that
+outward appearances can be deceiving - things of true value (like Aragorn)
+may not appear impressive at first glance, but their true worth is revealed
+over time.
+
+How the Quote Was Identified:
+1. Examined the two longest contigs which contained substantial portions:
+   - "not wither deep roots are not reached by the frost from the"
+   - "not glitter not all those who wander are lost the old that"
+
+2. Recognized the distinctive phrases:
+   - "all that is gold does not glitter"
+   - "those who wander are lost"
+   - "deep roots are not reached by the frost"
+   - "blade that was broken"
+   - "the crownless again"
+
+3. These phrases are iconic lines from Tolkien's work, making the identification
+   straightforward once the major contigs were assembled.
+
+
+================================================================================
+ADDITIONAL ANALYSIS
+================================================================================
+
+K-mer Statistics:
+- Total unique 5-mers: 207
+- Total k-mer observations: 1,456
+- Average coverage: 7.03x
+- Most frequent k-mer: "shall" (count = 18)
+- Least frequent k-mer: "again" (count = 1)
+
+Why Multiple Contigs?
+Despite being a single continuous quote, the assembly broke into 17 contigs
+because:
+
+1. Repeated Words: Common words like "all", "that", "shall" appear multiple
+   times, creating branch points where the assembler must choose between
+   multiple valid paths.
+
+2. Graph Structure: Each branch point forces the creation of a new contig
+   because the assembler cannot determine which path is correct without
+   additional information.
+
+3. Conservative Assembly: The algorithm stops at branch points rather than
+   making potentially incorrect choices, ensuring accuracy over completeness.
+
+Examples of Repeated Sequences:
+- "shall" appears in multiple contexts (3 locations in poem)
+- "that" appears 4 times
+- "all" appears 3 times
+- These repetitions create the 14 branch/merge points in the graph
+
+Assembly Quality:
+The N50 of 21 letters with 17 contigs represents a reasonable assembly given:
+- 7X coverage is moderate (higher coverage would help resolve ambiguities)
+- 5-mer k-mer size is quite short (longer k-mers might span repeat regions)
+- No paired-end information to help resolve branches
+- No errors in the data (realistic sequencing would have errors)
+
+In real genome assembly, this level of fragmentation would be acceptable for
+a draft assembly but would benefit from:
+- Scaffolding with longer reads
+- Gap filling strategies
+- Manual curation of obvious overlaps
+
+
+================================================================================
+FILES SUBMITTED
+================================================================================
+
+1. debruijn_graph_complete.xlsx - Complete De Bruijn graph with all nodes,
+   their connections, and merged sequences
+
+2. contigs.xlsx - List of all 17 assembled contigs with detailed information
+
+3. README.md - Comprehensive documentation of methodology and results
+
+4. BP6_ANSWERS.txt - This file, containing answers to all questions
+
+Supporting Files:
+- kmer_edges.xlsx - All k-mer edges in the graph
+- graph_nodes.xlsx - Node information (degree, type)
+- contigs_sequences.txt - Contigs in readable format
+- quote_identified.txt - The identified quote with context
+
+Python Scripts (for reproducibility):
+- build_debruijn_graph.py - Builds the initial graph
+- find_contigs.py - Finds unbranched paths
+- create_complete_graph.py - Creates the complete graph Excel file
+- identify_quote.py - Identifies the famous quote
+
+
+================================================================================
+CONCLUSION
+================================================================================
+
+Successfully reconstructed the famous Tolkien quote "All That Is Gold Does Not
+Glitter" from 207 unique 5-mers using De Bruijn graph assembly. The assembly
+demonstrates the effectiveness of graph-based methods for sequence
+reconstruction while highlighting the challenges posed by repetitive sequences.
+
+The exercise provides valuable hands-on experience with:
+- De Bruijn graph construction and traversal
+- Contig assembly algorithms
+- Assembly quality metrics (N50)
+- The trade-offs between k-mer size, coverage, and assembly quality
+
+The submitted De Bruijn graph (debruijn_graph_complete.xlsx) shows the
+condensed graph structure with all branch points and merged unbranched
+regions clearly indicated.
+
+================================================================================
