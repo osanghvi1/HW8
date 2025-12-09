@@ -1,0 +1,36 @@
+SEQUENCE RANDOMIZATION TEST SUMMARY
+======================================================================
+
+Test sequence length: 200
+
+Results:
+----------------------------------------------------------------------
+K     Method     Match %      Avg Diff    
+----------------------------------------------------------------------
+1     sampling   100.00       0.00        
+1     euler      100.00       0.00        
+2     sampling   0.00         7.88        
+2     euler      100.00       0.00        
+3     sampling   3.28         4.33        
+3     euler      100.00       0.00        
+4     sampling   0.00         2.35        
+4     euler      100.00       0.00        
+
+
+KEY FINDINGS:
+----------------------------------------------------------------------
+
+1. Sampling Method:
+   - Simple shuffling of letters
+   - K-mer content is approximate (not exact)
+   - Match percentage varies depending on sequence composition
+
+2. Euler Method:
+   - Uses Eulerian path through De Bruijn graph
+   - K-mer content is exactly preserved
+   - 100% match for the chosen k value
+
+3. K-value Effect:
+   - Larger k means more complex k-mer patterns to preserve
+   - Euler method maintains exact counts for the chosen k
+   - Sampling method approximation gets worse with larger k

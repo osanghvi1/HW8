@@ -1,0 +1,23 @@
+ASSEMBLY SUMMARY
+======================================================================
+
+Parameters:
+  Genome length: 1000
+  Coverage: 10.0x
+  Read length: 100
+  K-mer length: 21
+  Error rate: 0.0
+
+Results:
+  Number of reads: 100
+  Unique k-mers: 957
+  Number of contigs: 1
+  Total assembly length: 977
+  N50: 977
+  Longest contig: 977
+
+Lander-Waterman Prediction:
+  Expected contigs: 1.00
+  Observed contigs: 1
+  Difference: 0.00
+  Ratio (observed/expected): 1.00
